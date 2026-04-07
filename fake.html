@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 400px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      min-height: 60px;
+    }
+
+    .highlight {
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    .heart {
+      font-size: 30px;
+      animation: beat 1s infinite;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e6004c;
+      transform: scale(1.05);
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .falling-heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="title">💌</h1>
+    <p id="message"></p>
+
+    <p>
+      <span class="highlight">Still... you are special to me ❤️</span>
+    </p>
+
+    <button onclick="showLove()">Tap Me 👎</button>
+
+    <div class="heart">👎</div>
+  </div>
+
+<script>
+  const text = "I miss youuu... but youuu 😤 Serilla... Fakee Fakee 👎👎👎😒";
+  let i = 0;
+
+  function typeEffect() {
+    if (i < text.length) {
+      document.getElementById("message").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeEffect, 50);
+    }
+  }
+
+  typeEffect();
+
+  function showLove() {
+    alert("Still I love you 😌❤️");
+    createHearts();
+  }
+
+  function createHearts() {
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("falling-heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  }
+</script>
+
+</body>
+</html>
